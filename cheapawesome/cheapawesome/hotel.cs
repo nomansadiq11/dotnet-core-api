@@ -13,6 +13,7 @@ namespace cheapawesome
         public string name { get; set; }
         public int geoId { get; set; }
         public int rating { get; set; }
+        public List<Rate> Rates { get; set; }
 
     }
 

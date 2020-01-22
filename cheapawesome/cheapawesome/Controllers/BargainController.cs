@@ -11,28 +11,29 @@ namespace cheapawesome.Controllers
     public class BargainController : Controller
     {
         List<Hotel> hotels = new List<Hotel>();
-        List<Rate> rates = new List<Rate>();
+
 
         // load data on controstor 
         public BargainController()
         {
-            loadhotels();
-            loadrates();
+
+            loadhotels(1);
+            loadhotels(2);
 
         }
 
         [HttpPost("FindBargain")]
         public JsonResult Get(int destinationid, int nights, string code)
         {
-            
-            hotel vhotel = new hotel();
+
+            //Hotel vhotel = new Hotel();
 
             try
             {
 
-                
-                vhotel.hotels = hotels;
-                vhotel.rates = rates;
+                hotels = hotels.Where(a => a.DestinationId == destinationid).ToList();
+                //vhotel.hotels = hotels;
+                //vhotel.rates = rates;
 
 
             }
@@ -41,36 +42,48 @@ namespace cheapawesome.Controllers
 
             }
 
-            return Json(vhotel);
+            return Json(hotels);
         }
 
 
-        private void loadhotels()
+        private void loadhotels(int hotelid)
         {
             hotels.Add(new Hotel()
-            { DestinationId = 1, geoId = 1, HotelId = 1, name = "Hotel 1", PropertyId = 1, rating = 5 }
+            {
+                DestinationId = hotelid,
+                geoId = 1,
+                HotelId = hotelid,
+                name = "Hotel " + hotelid,
+                PropertyId = 1,
+                rating = 5,
+                Rates = loadrates(hotelid)
+            }
             );
 
-            hotels.Add(new Hotel()
-            { DestinationId = 1, geoId = 1, HotelId = 2, name = "Hotel 2", PropertyId = 1, rating = 5 }
-            );
+            //hotels.Add(new Hotel()
+            //{ DestinationId = 1, geoId = 1, HotelId = 2, name = "Hotel 2", PropertyId = 1, rating = 5, Rates = loadrates(hotelid) }
+            //);
 
-            hotels.Add(new Hotel()
-            { DestinationId = 2, geoId = 1, HotelId = 1, name = "Hotel 1", PropertyId = 1, rating = 5 }
-            );
+            //hotels.Add(new Hotel()
+            //{ DestinationId = 2, geoId = 1, HotelId = 1, name = "Hotel 1", PropertyId = 1, rating = 5, Rates = loadrates(hotelid) }
+            //);
 
-            hotels.Add(new Hotel()
-            { DestinationId = 2, geoId = 1, HotelId = 2, name = "Hotel 2", PropertyId = 1, rating = 5 }
-            );
+            //hotels.Add(new Hotel()
+            //{ DestinationId = 2, geoId = 1, HotelId = 2, name = "Hotel 2", PropertyId = 1, rating = 5, Rates = loadrates(hotelid) }
+            //);
 
         }
 
-        private void loadrates()
+        private List<Rate> loadrates(int hotelid)
         {
-            rates.Add(new Rate() { rateType = "Stay", boardType = "No Break fash", HotelId = 1, value = 100 });
-            rates.Add(new Rate() { rateType = "Stay", boardType = "With Break fash", HotelId = 2, value = 200 });
-            rates.Add(new Rate() { rateType = "Per Night", boardType = "No Break fash", HotelId = 1, value = 20 });
-            rates.Add(new Rate() { rateType = "Per Night", boardType = "With Break fash", HotelId = 2, value = 40 });
+            List<Rate> rates = new List<Rate>();
+
+            rates.Add(new Rate() { rateType = "Stay", boardType = "No Break fash", HotelId = hotelid, value = 100 });
+            rates.Add(new Rate() { rateType = "Stay", boardType = "With Break fash", HotelId = hotelid, value = 200 });
+            rates.Add(new Rate() { rateType = "Per Night", boardType = "No Break fash", HotelId = hotelid, value = 20 });
+            rates.Add(new Rate() { rateType = "Per Night", boardType = "With Break fash", HotelId = hotelid, value = 40 });
+
+            return rates;
         }
 
     }
