@@ -1,0 +1,51 @@
+
+
+<html >
+    <head>
+        <title>
+            Cheapawsome
+        </title>
+
+        
+        
+        
+        <script src="angular.min.js"></script>
+        <script src="bargain.js" > </script>
+
+    </head>
+    <body ng-app="cheapawsome"  ng-controller="cheapawsomeController">
+        <h1>
+            Cheapawsome
+        </h1>
+
+        <table>
+            <tr>
+                <td>
+                   Select Destination
+                </td>
+                <td>
+                    <select>
+                        <option value="1">Dubai</option>
+                        <option value="2">Abu Dhabi</option>
+                    </select> 
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   Enter Nights
+                </td>
+                <td>
+                    <input type="number"  />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                   &nbsp;
+                </td>
+                <td>
+                    <input type="button" value="Find Bargian" ng-click="fn_findbargain()" />
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
