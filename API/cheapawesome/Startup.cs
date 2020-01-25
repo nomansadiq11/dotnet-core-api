@@ -59,6 +59,13 @@ namespace cheapawesome
 
             });
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+
 
         }
 
@@ -71,6 +78,7 @@ namespace cheapawesome
             }
 
             app.UseRouting();
+            app.UseCors("MyPolicy");
 
 
             app.UseAuthorization();
