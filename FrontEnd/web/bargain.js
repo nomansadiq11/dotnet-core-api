@@ -32,8 +32,8 @@ app.controller("cheapawsomeController", function ($scope, $log, cheapawsomeConta
         
         var param =
             {
-                destinationid: 1,
-                nights:1,
+                destinationid: $scope.dest,
+                nights:$scope.nights,
                 code:"asdfasdf"
             };
 
@@ -41,7 +41,7 @@ app.controller("cheapawsomeController", function ($scope, $log, cheapawsomeConta
 
         var ResponseRegistration = cheapawsomeContactService.PostToService(param, "FindBargain");
         ResponseRegistration.then(function (msg) {
-            console.log(msg); 
+            console.log(msg.data); 
             
         }, function (msg) {
 

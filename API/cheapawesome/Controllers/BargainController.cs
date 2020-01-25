@@ -19,14 +19,15 @@ namespace cheapawesome.Controllers
         public BargainController()
         {
 
-            loadhotels(1);
-            loadhotels(2);
+            
 
         }
 
         [HttpPost("FindBargain")]
-        public JsonResult Get(int destinationid, int nights, string code)
+        public JsonResult Post(int destinationid, int nights, string code)
         {
+            loadhotels(1);
+            loadhotels(2);
 
             //Hotel vhotel = new Hotel();
 
