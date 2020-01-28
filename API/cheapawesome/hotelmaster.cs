@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace cheapawesome
 {
-    public class BargainRequest
+    public class hotelmaster
     {
-        public int DestinationID { get; set; }
+        public string Destination { get; set; }
+        public string RateType { get; set; }
         public int Nights { get; set; }
-        
     }
 }

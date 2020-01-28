@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace cheapawesome.Controllers
 {
-    
+
     [ApiController]
     [Route("api/[controller]")]
     public class BargainController : Controller
@@ -19,7 +19,7 @@ namespace cheapawesome.Controllers
         public BargainController()
         {
 
-            
+
 
         }
 
@@ -29,23 +29,27 @@ namespace cheapawesome.Controllers
             loadhotels(1);
             loadhotels(2);
 
-            //Hotel vhotel = new Hotel();
 
-            try
+
+            hotels = hotels.Where(a => a.DestinationId == bargainRequest.DestinationID).ToList();
+
+            var baseobj = hotels.Select(a => new
             {
+                a.HotelId,
+                SelectedDest = a.Rates.Where(b => b.HotelId == a.HotelId).Select(x => new
+                {
+                    Destination = a.DestinationId == 1 ? "Dubai" : "Abdu Dhabi",
+                    Nights = bargainRequest.Nights,
+                    x.rateType, 
+                    totalprice = x.rateType == "Stay" ? x.value : x.value * bargainRequest.Nights }),
 
-                hotels = hotels.Where(a => a.DestinationId == bargainRequest.DestinationID).ToList();
-                //vhotel.hotels = hotels;
-                //vhotel.rates = rates;
+
+            });
 
 
-            }
-            catch (Exception ex)
-            {
 
-            }
 
-            return Json(hotels);
+            return Json(baseobj);
         }
 
 
