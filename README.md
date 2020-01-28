@@ -9,3 +9,7 @@ API folder having dotnet core application project which generate the hotel respo
 
 FrontEnd folder having Angular JS Application which consume the dotent core API and pass values to get the response according and shows the destination and with prices 
 
+
+## Deployment 
+
+In deployment folder there is yml file which can use to build the docker container image and push to the docker repository. 
