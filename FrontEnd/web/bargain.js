@@ -1,6 +1,6 @@
 
 
-var ServiceURL = "http://localhost:3000/api/Bargain/";
+var ServiceURL = "http://localhost:51835/api/Bargain/";
 
 var app = angular.module("cheapawsome", []);
 
@@ -33,8 +33,7 @@ app.controller("cheapawsomeController", function ($scope, $log, cheapawsomeConta
         var param =
             {
                 destinationid: parseInt($scope.dest),
-                nights:$scope.nights,
-                code:"asdfasdf"
+                nights:$scope.nights
             };
 
         console.log(param); 
@@ -42,10 +41,16 @@ app.controller("cheapawsomeController", function ($scope, $log, cheapawsomeConta
         var ResponseRegistration = cheapawsomeContactService.PostToService(param, "FindBargain");
         ResponseRegistration.then(function (msg) {
             console.log(msg.data); 
+
+            $scope.hotels = msg.data[0].selectedDest; 
+
+            console.log("hotel value "); 
+
+            console.log($scope.hotels); 
             
         }, function (msg) {
 
-            console.log('Error: GetStateList ');
+            console.log('Error: cheapawsomeContactService');
         });
     }
 

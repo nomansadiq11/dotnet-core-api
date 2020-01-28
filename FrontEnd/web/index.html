@@ -39,11 +39,51 @@
                 </td>
             </tr>
             <tr>
+
                 <td>
                    &nbsp;
                 </td>
                 <td>
                     <input type="button" value="Find Bargian" ng-click="fn_findbargain()" />
+                </td>
+            </tr>
+            
+            <tr>
+
+                <td>
+                   &nbsp;
+                </td>
+                <td>
+                    &nbsp;
+                </td>
+            </tr>
+            
+
+        </table>
+
+        <table>
+            <tr>
+                
+                <th>
+                    Destination
+                </th>
+                <th>
+                    Rate Type
+                </th>
+                <th>
+                    Price
+                </th>
+
+            </tr>
+            <tr ng-repeat="item in hotels">
+                <td>
+                    {{item.destination}}
+                </td>
+                <td>
+                    {{item.rateType}}
+                </td>
+                <td>
+                    {{item.totalprice}}
                 </td>
             </tr>
         </table>
