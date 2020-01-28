@@ -32,7 +32,7 @@ app.controller("cheapawsomeController", function ($scope, $log, cheapawsomeConta
         
         var param =
             {
-                destinationid: $scope.dest,
+                destinationid: parseInt($scope.dest),
                 nights:$scope.nights,
                 code:"asdfasdf"
             };

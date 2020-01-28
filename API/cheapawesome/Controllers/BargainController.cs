@@ -24,7 +24,7 @@ namespace cheapawesome.Controllers
         }
 
         [HttpPost("FindBargain")]
-        public JsonResult Post(int destinationid, int nights, string code)
+        public JsonResult Post(BargainRequest bargainRequest)
         {
             loadhotels(1);
             loadhotels(2);
@@ -34,7 +34,7 @@ namespace cheapawesome.Controllers
             try
             {
 
-                hotels = hotels.Where(a => a.DestinationId == destinationid).ToList();
+                hotels = hotels.Where(a => a.DestinationId == bargainRequest.DestinationID).ToList();
                 //vhotel.hotels = hotels;
                 //vhotel.rates = rates;
 
